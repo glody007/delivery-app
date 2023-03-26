@@ -8,6 +8,7 @@ import {
     MagnifyingGlassIcon
 } from "react-native-heroicons/outline";
 import Categories from '../components/Categories';
+import FeaturedRow from '../components/FeaturedRow';
 
 export default function Home() {
     const navigation = useNavigation()
@@ -58,6 +59,26 @@ export default function Home() {
             >
                 {/* Categories */}
                 <Categories />
+
+                {/* Featured rows */}
+                <FeaturedRow
+                    id='1'
+                    title='Featured'
+                    description={'A Paris'}
+                />
+
+                <FeaturedRow
+                    id='1'
+                    title='Restaurants'
+                    description={'Brasserie qui propose des plateaux de fruits de mer à Paris'}
+                />
+
+                <FeaturedRow
+                    id='1'
+                    title='Trending'
+                    description={'L\'Armandie est une brasserie'}
+                />
+
             </ScrollView>
         </SafeAreaView>
     );
