@@ -20,7 +20,7 @@ export default function Home() {
         <SafeAreaView className='bg-white'>
 
             {/* Header */}
-            <View className='flex-row items-center pb-4 space-x-2 px-4'>
+            <View className='flex-row items-center pb-4 space-x-2 mx-4'>
                 <Image 
                     source={{
                         uri: 'https://links.papareact.com/wru'
@@ -39,7 +39,7 @@ export default function Home() {
             </View>
 
             {/* Search */}
-            <View className='flex-row items-center pb-4 space-x-2 px-4'>
+            <View className='flex-row items-center pb-4 space-x-2 mx-4'>
                 <View className='flex-row flex-1 bg-gray-200 space-x-2 p-3'>
                     <MagnifyingGlassIcon size={20} color='gray' />
                     <TextInput placeholder='Restaurant and hotel' />
