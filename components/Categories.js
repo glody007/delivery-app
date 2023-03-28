@@ -1,10 +1,26 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import CategoryCard from './CategoryCard'
+import sanityClient from '../sanity'
 
 export default function Categories() {
-  return (
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        sanityClient.fetch(
+            `
+                *[_type == 'category'] {
+                    ...
+                }
+  
+            `
+        ).then(data => {
+            setCategories(data)
+        })
+    }, [])
+
+    return (
     <ScrollView
         contentContainerStyle={{
             paddingHorizontal: 15,
@@ -13,13 +29,14 @@ export default function Categories() {
         horizontal
         showsHorizontalScrollIndicator={false}
     >
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
-        <CategoryCard imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'} name={'Name 1'} />
+        {categories.map(category => (
+            <CategoryCard 
+                key={category._id}
+                id={category._id}
+                imgUrl={category.image} 
+                name={category.title}
+            />
+        ))}
     </ScrollView>
   )
 }
