@@ -1,10 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { ArrowRightIcon } from 'react-native-heroicons/outline'
 import RestaurantCard from './RestaurantCard'
+import sanityClient from '../sanity';
 
 export default function FeaturedRow({ id, title, description }) {
+  const [restaurants, setRestaurants] = useState([])
+
+  useEffect(() => {
+      sanityClient.fetch(
+          `
+              *[_type == 'featured' && _id == $id] {
+                  ...,
+                  restaurants[]->{
+                      ...,
+                      dishes->,
+                      type->{
+                        title
+                      }
+                  }
+              }[0]
+
+          `,
+          { id }
+      ).then(data => {
+          setRestaurants(data?.restaurants)
+      })
+  }, [])
+
   return (
     <View>
       <View className='mt-4 flex-row items-center justify-between px-4' >
@@ -22,30 +46,20 @@ export default function FeaturedRow({ id, title, description }) {
         showsHorizontalScrollIndicator={false}
         className='mt-4'
       >
-        <RestaurantCard 
-          title={'Nando\'s'}
-          rating={4.8}
-          genre='Sushi'
-          imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'}
-          long
-          lat
-        />
-        <RestaurantCard 
-          title={'Nando\'s'}
-          rating={4.8}
-          genre='Sushi'
-          imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'}
-          long
-          lat
-        />
-        <RestaurantCard 
-          title={'Nando\'s'}
-          rating={4.8}
-          genre='Sushi'
-          imgUrl={'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg'}
-          long
-          lat
-        />
+        {restaurants.map(restaurant => (
+          <RestaurantCard 
+            key={restaurant._id}
+            id={restaurant._id}
+            title={restaurant.name}
+            short_description={restaurant.short_description}
+            dishes={restaurant.dishes}
+            rating={restaurant.rating}
+            genre={restaurant.type?.title}
+            imgUrl={restaurant.image}
+            long={restaurant.long}
+            lat={restaurant.lat}
+          />
+        ))}
       </ScrollView>
     </View>
   )
