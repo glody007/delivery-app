@@ -15,7 +15,7 @@ export default function FeaturedRow({ id, title, description }) {
                   ...,
                   restaurants[]->{
                       ...,
-                      dishes->,
+                      dishes[]->,
                       type->{
                         title
                       }
@@ -58,6 +58,7 @@ export default function FeaturedRow({ id, title, description }) {
             imgUrl={restaurant.image}
             long={restaurant.long}
             lat={restaurant.lat}
+            address={restaurant.address}
           />
         ))}
       </ScrollView>
