@@ -3,7 +3,7 @@ import { AppRegistry } from 'react-native';
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './screens/Home';
+import HomeScreen from './screens/HomeScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
 import { store } from './store';
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
         </Stack.Navigator>
       </NavigationContainer>
