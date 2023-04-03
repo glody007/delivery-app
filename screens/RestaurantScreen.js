@@ -96,8 +96,8 @@ export default function RestaurantScreen() {
                 <View className="bg-white mt-4">
                     {dishes.map((dish) => (
                         <DishRow 
-                            key={dish.id}
-                            id={dish.id}
+                            key={dish._id}
+                            id={dish._id}
                             name={dish.name}
                             short_description={dish.short_description}
                             imgUrl={dish.image}
