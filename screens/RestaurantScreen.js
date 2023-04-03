@@ -16,6 +16,7 @@ import {
 } from 'react-native-heroicons/solid'
 import { ClockIcon } from 'react-native-heroicons/outline'
 import DishRow from '../components/DishRow'
+import BasketIcon from '../components/BasketIcon'
 
 export default function RestaurantScreen() {
     const navigation = useNavigation()
@@ -41,7 +42,8 @@ export default function RestaurantScreen() {
     })
 
     return (
-        <View className="relative flex-1">
+        <>
+            <BasketIcon />
             <ScrollView>
                 <View className="relative">
                     <Image 
@@ -93,7 +95,7 @@ export default function RestaurantScreen() {
                     <Text className="text-xl font-bold">Menu</Text>
                 </View>
 
-                <View className="bg-white mt-4">
+                <View className="bg-white mt-4 pb-36">
                     {dishes.map((dish) => (
                         <DishRow 
                             key={dish._id}
@@ -107,25 +109,6 @@ export default function RestaurantScreen() {
                 </View>
 
             </ScrollView>
-
-            <TouchableOpacity 
-                style={{
-                    backgroundColor: "#00CCBB"
-                }} 
-                className="absolute bottom-10 flex-row rounded-lg mx-4 p-4"
-            >
-                <View className="flex-1 flex-row justify-between items-center">
-                    <View className="bg-gray-400 rounded p-2">
-                        <Text className="text-xl text-white font-bold">1</Text>
-                    </View>
-                    <View>
-                        <Text className="text-xl text-white font-bold">View Basket</Text>
-                    </View>
-                    <View>
-                        <Text className="text-xl text-white font-bold">1</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        </View>
+        </>
     )
 }
