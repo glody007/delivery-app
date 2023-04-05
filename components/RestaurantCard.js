@@ -5,7 +5,7 @@ import { StarIcon } from 'react-native-heroicons/solid'
 import { urlFor } from '../sanity'
 import { useNavigation } from '@react-navigation/native'
 
-export default function RestaurantCard({ title, rating, genre, imgUrl, long, lat, short_description, dishes, address }) {
+export default function RestaurantCard({ id, title, rating, genre, imgUrl, long, lat, short_description, dishes, address }) {
   const navigation = useNavigation()
     
   return (
@@ -15,6 +15,7 @@ export default function RestaurantCard({ title, rating, genre, imgUrl, long, lat
             navigation.navigate(
                 'Restaurant', 
                 { 
+                    id,
                     title, 
                     rating, 
                     genre, 
