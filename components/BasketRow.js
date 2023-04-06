@@ -6,8 +6,12 @@ import {
 } from 'react-native'
 import React from 'react'
 import { urlFor } from '../sanity'
+import { useDispatch } from 'react-redux'
+import { removeAllOccurrencesFromBasket } from '../slices/basketSlice'
 
-export default function BasketRow({ quantity, imgUrl, name, totalPrice }) {
+export default function BasketRow({ id, quantity, imgUrl, name, totalPrice }) {
+  const dispatch = useDispatch()
+
   return (
     <View className="flex-row justify-between items-center bg-white space-x-2 py-2 px-4">
       <Text className="text-[#01A196]">{quantity} x</Text>
@@ -19,7 +23,9 @@ export default function BasketRow({ quantity, imgUrl, name, totalPrice }) {
       />
       <Text className="flex-1">{name}</Text>
       <Text className="">{totalPrice}</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {
+        dispatch(removeAllOccurrencesFromBasket({id}))
+      }}>
         <Text className="text-[#01A196]">Remove</Text>
       </TouchableOpacity>
     </View>

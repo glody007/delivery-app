@@ -78,6 +78,7 @@ export default function BasketScreen() {
                     {Object.entries(groupedItemsInBasket).map(([key, items]) => (
                         <BasketRow 
                             key={key}  
+                            id={key}
                             quantity={items.length}
                             imgUrl={items[0]?.imgUrl}
                             name={items[0]?.name}
