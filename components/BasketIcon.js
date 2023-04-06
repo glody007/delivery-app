@@ -22,7 +22,7 @@ export default function BasketIcon() {
     <View className="absolute bottom-10 w-full z-10">
         <TouchableOpacity 
             className="flex-row bg-[#00CCBB] rounded-lg mx-4 p-4"
-            onPress={() => navigation.navigate('PlaceOrder')}
+            onPress={() => navigation.navigate('Basket')}
         >
             <View className="flex-1 flex-row justify-between items-center">
                 <View className="bg-[#01A196] rounded p-2">
