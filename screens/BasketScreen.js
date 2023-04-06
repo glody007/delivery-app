@@ -68,7 +68,7 @@ export default function BasketScreen() {
                     className="h-12 w-12 bg-gray-100 border border-gray-200 rounded-full"
                 />
                 <Text className="flex-1">Delivery in 50 - 70 min</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
                     <Text className="text-[#01A196]">Change</Text>
                 </TouchableOpacity>
             </View>
