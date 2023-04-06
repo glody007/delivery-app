@@ -79,6 +79,7 @@ export default function BasketScreen() {
                         <BasketRow 
                             key={key}  
                             id={key}
+                            price={items[0]?.price}
                             quantity={items.length}
                             imgUrl={items[0]?.imgUrl}
                             name={items[0]?.name}

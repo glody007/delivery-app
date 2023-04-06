@@ -8,9 +8,12 @@ import React from 'react'
 import { urlFor } from '../sanity'
 import { useDispatch } from 'react-redux'
 import { removeAllOccurrencesFromBasket } from '../slices/basketSlice'
+import { formatCurrency } from 'react-native-format-currency'
 
-export default function BasketRow({ id, quantity, imgUrl, name, totalPrice }) {
+export default function BasketRow({ id, quantity, imgUrl, name, price }) {
   const dispatch = useDispatch()
+
+  const [totalWithSymbol] = formatCurrency({ amount: price * quantity, code: "USD" });
 
   return (
     <View className="flex-row justify-between items-center bg-white space-x-2 py-2 px-4">
@@ -22,7 +25,7 @@ export default function BasketRow({ id, quantity, imgUrl, name, totalPrice }) {
         className="h-14 w-14 bg-gray-200 border border-gray-400 rounded-full"
       />
       <Text className="flex-1">{name}</Text>
-      <Text className="">{totalPrice}</Text>
+      <Text className="">{totalWithSymbol}</Text>
       <TouchableOpacity onPress={() => {
         dispatch(removeAllOccurrencesFromBasket({id}))
       }}>
