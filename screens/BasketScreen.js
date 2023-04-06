@@ -100,7 +100,7 @@ export default function BasketScreen() {
                     </View>
                     <TouchableOpacity 
                         className="flex-row bg-[#00CCBB] rounded-lg p-4 mt-4"
-                        onPress={() => navigation.goBack()}
+                        onPress={() => navigation.navigate('PlaceOrder')}
                     >
                         <View className="flex-1">
                             <Text className="text-xl text-white text-center font-extrabold">Place order</Text>
