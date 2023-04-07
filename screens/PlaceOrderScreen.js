@@ -20,7 +20,7 @@ export default function PlaceOrderScreen() {
             className="h-96 w-80"
         />
         <Animatable.Text
-            animation="slideInDown" 
+            animation="slideInUp" 
             iterationCount={1}
             className="text-lg font-bold text-center text-white my-10"
         >
