@@ -14,10 +14,14 @@ export default function PlaceOrderScreen() {
   return (
     <SafeAreaView className="flex-1 bg-[#00CCBB] justify-center items-center">
         <Animatable.Image 
+            animation="slideInUp" 
+            iterationCount={1}
             source={require('../assets/delivery.png')}
             className="h-96 w-80"
         />
         <Animatable.Text
+            animation="slideInDown" 
+            iterationCount={1}
             className="text-lg font-bold text-center text-white my-10"
         >
             Waiting for restaurant to accept your order!
