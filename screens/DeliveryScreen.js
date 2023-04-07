@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { selectRestaurant } from '../slices/restaurantSlice'
 import MapView, { Marker }  from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native'
+import * as Progress from 'react-native-progress';
 
 export default function DeliveryScreen() {
   const navigation = useNavigation()
@@ -32,6 +33,12 @@ export default function DeliveryScreen() {
                 <View>
                     <Text className="text-lg text-gray-500">Estimated Arrival</Text>
                     <Text className="text-3xl font-extrabold">45-55 Minutes</Text>
+                    <Progress.Bar 
+                        indeterminate={true}
+                        width={160} 
+                        color={'#00CCBB'}
+                        className="my-2"
+                    />
                     <Text className="text-gray-500">Your order at {restaurant.title} is being prepared</Text>
                 </View>
                 <Image 
